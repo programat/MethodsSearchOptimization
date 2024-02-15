@@ -17,22 +17,9 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>FFFFFFFFFFFFFFFFF</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="graphic" native="true">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>20</y>
-      <width>721</width>
-      <height>861</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
@@ -98,7 +85,7 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QLineEdit" name="lineEdit_7"/>
+        <widget class="QLineEdit" name="iter_count"/>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label">
@@ -111,7 +98,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="y_start"/>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_4">
@@ -124,7 +111,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit_2"/>
+        <widget class="QLineEdit" name="x_start"/>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_2">
@@ -154,14 +141,14 @@
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QLineEdit" name="lineEdit_5"/>
+        <widget class="QLineEdit" name="delay"/>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_6"/>
+        <widget class="QLineEdit" name="start_step"/>
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="startButton">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -192,7 +179,7 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Запуск</string>
       </property>
      </widget>
     </widget>
@@ -220,7 +207,7 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QTextEdit" name="textEdit">
+    <widget class="QTextEdit" name="textOutput">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -237,7 +224,7 @@
       <x>20</x>
       <y>660</y>
       <width>471</width>
-      <height>261</height>
+      <height>181</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -255,7 +242,7 @@
        <x>0</x>
        <y>0</y>
        <width>471</width>
-       <height>241</height>
+       <height>181</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
@@ -266,10 +253,26 @@
        <number>16</number>
       </property>
       <item row="1" column="1">
-       <widget class="QLineEdit" name="lineEdit_10"/>
+       <widget class="QLineEdit" name="x_interval">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>(-5;5)</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_11">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>X интервал</string>
         </property>
@@ -278,34 +281,45 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_9">
-        <property name="text">
-         <string>Z маштаб</string>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="z_scale">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+        <property name="text">
+         <string>2</string>
         </property>
        </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="lineEdit_14"/>
       </item>
       <item row="4" column="1">
-       <widget class="QLineEdit" name="lineEdit_15"/>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_13">
-        <property name="text">
-         <string>Ось X интервал</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QCheckBox" name="grid">
+          <property name="text">
+           <string>Сетка</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="axes">
+          <property name="text">
+           <string>Оси</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_10">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>Функция</string>
         </property>
@@ -315,10 +329,26 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QLineEdit" name="lineEdit_12"/>
+       <widget class="QLineEdit" name="y_interval">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>(-5;5)</string>
+        </property>
+       </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_8">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>Y интервал</string>
         </property>
@@ -328,53 +358,58 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="comboBox"/>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLineEdit" name="lineEdit_16"/>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>Ось Y интервал</string>
+       <widget class="QComboBox" name="functionSelector">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
+        <item>
+         <property name="text">
+          <string>Функция Матьяса</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Функция сферы</string>
+         </property>
+        </item>
        </widget>
       </item>
-      <item row="6" column="1">
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QCheckBox" name="checkBox">
-          <property name="text">
-           <string>CheckBox</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBox_2">
-          <property name="text">
-           <string>CheckBox</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_9">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Z маштаб</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_12">
+   <widget class="QFrame" name="graphFrame">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>57</width>
-      <height>20</height>
+      <x>520</x>
+      <y>20</y>
+      <width>721</width>
+      <height>901</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Y интервал</string>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
     </property>
    </widget>
   </widget>
