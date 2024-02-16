@@ -13,6 +13,8 @@ class MainWindowController:
         self._window = window
         self.function = None
         self.z_scale = None
+        self.gridOn = True
+        self.axisOn = True
     @property
     def window(self):
         return self._window
@@ -31,6 +33,15 @@ class MainWindowController:
         self.z_scale = float(self.window.z_scale.text())
         return self.z_scale
 
+    def grid_change(self):
+        self.gridOn = self.window.grid.isChecked()
+        self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn)
+        return self.gridOn
+    def axes_change(self):
+        self.axisOn = self.window.axes.isChecked()
+        self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn)
+        return self.axisOn
+
     def functions_selector(self):
         selected_function = self.window.functionSelector.currentText()
         if selected_function == 'Функция Матьяса':
@@ -40,4 +51,4 @@ class MainWindowController:
             self.function = models.functions.SphereFunction(x_interval_str=self.x_interval_getter(),
                                                             y_interval_str=self.y_interval_getter())
 
-        self.window.updateGraph(self.function.get_function(),self.z_scale_getter())
+        self.window.updateGraph(self.function.get_function(),self.z_scale_getter(),self.gridOn,self.axisOn)
