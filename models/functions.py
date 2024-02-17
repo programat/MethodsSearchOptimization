@@ -4,10 +4,12 @@ from abc import ABC, abstractmethod
 
 class Functions(ABC):
     def __init__(self, x_interval_str, y_interval_str):
-
-        self.x_interval = list(map(float, x_interval_str.replace(')', '', 1).replace('(', '', 1).split(';')))
-        self.y_interval = list(map(float, y_interval_str.replace(')', '', 1).replace('(', '', 1).split(';')))
-
+        try:
+            self.x_interval = list(map(float, x_interval_str.replace(')', '', 1).replace('(', '', 1).split(';')))
+            self.y_interval = list(map(float, y_interval_str.replace(')', '', 1).replace('(', '', 1).split(';')))
+        except Exception:
+            self.x_interval = [-5,5]
+            self.y_interval = [-5,5]
     @abstractmethod
     def get_function(self) -> tuple:
         pass

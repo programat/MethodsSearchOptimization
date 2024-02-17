@@ -1,4 +1,5 @@
 from PyQt6 import QtWidgets
+from PyQt6.QtWidgets import QSizePolicy
 from matplotlib import pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -10,6 +11,7 @@ class GraphWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.fig = Figure()
+
         self.canvas = FigureCanvas(self.fig)
         self.toolbar = NavigationToolbar(self.canvas, self)
 
@@ -28,8 +30,16 @@ class GraphWidget(QtWidgets.QWidget):
         # Clear the previous plot
         self.axes.clear()
 
+        max_x = max(axes[0][0])
+        for ax in axes[0]:
+            m=max(ax)
+            max_x=max(m,max_x)
+        max_y = max(axes[1][0])
+        for ax in axes[1]:
+            m = max(ax)
+            max_y = max(m, max_y)
         # Plot the new surface
-        self.axes.set_box_aspect([1,1,z_mash])
+        self.axes.set_box_aspect([max_x/max_y,1,z_mash])
         self.axes.plot_surface(axes[0], axes[1], axes[2], cmap='coolwarm')
 
         # True False
