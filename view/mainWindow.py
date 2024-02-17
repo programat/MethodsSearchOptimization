@@ -1,9 +1,12 @@
 import os
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow
+
+from PyQt6.QtGui import QFocusEvent
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit
 from PyQt6 import uic, QtWidgets
 from view.graphWidget import GraphWidget
 from controllers.mainWindowController import MainWindowController
+
 
 
 class MainWindow(QMainWindow):
@@ -22,11 +25,18 @@ class MainWindow(QMainWindow):
         self.grid.stateChanged.connect(lambda: self.controller.grid_change())
         self.axes.stateChanged.connect(lambda: self.controller.axes_change())
         self.functionSelector.currentTextChanged.connect(lambda: self.controller.functions_selector())
+        self.x_interval.editingFinished.connect(lambda :self.controller.x_interval_changed())
+        self.y_interval.editingFinished.connect(lambda :self.controller.y_interval_changed())
+        self.z_scale.editingFinished.connect(lambda :self.controller.z_scale_changed())
 
         return self
 
+
+
+
     def updateGraph(self, axes, z_scale, gridOn, axisOn):
         self.graph.draw_graph(axes, z_scale, gridOn, axisOn)
+
 
     # def closeEvent(self, QCloseEvent):
     #     # del self.controllers

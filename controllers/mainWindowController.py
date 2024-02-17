@@ -42,6 +42,13 @@ class MainWindowController:
         self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn)
         return self.axisOn
 
+    def x_interval_changed(self):
+        self.functions_selector()
+    def y_interval_changed(self):
+        self.functions_selector()
+    def z_scale_changed(self):
+        self.functions_selector()
+
     def functions_selector(self):
         selected_function = self.window.functionSelector.currentText()
         if selected_function == 'Функция Матьяса':

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1268</width>
-    <height>862</height>
+    <height>881</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -26,7 +26,7 @@
       <x>510</x>
       <y>20</y>
       <width>20</width>
-      <height>781</height>
+      <height>811</height>
      </rect>
     </property>
     <property name="orientation">
@@ -243,7 +243,7 @@
       <x>520</x>
       <y>20</y>
       <width>721</width>
-      <height>781</height>
+      <height>811</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -425,7 +425,7 @@
      <x>0</x>
      <y>0</y>
      <width>1268</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
