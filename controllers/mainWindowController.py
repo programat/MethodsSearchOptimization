@@ -15,6 +15,8 @@ class MainWindowController:
         self.z_scale = None
         self.gridOn = True
         self.axisOn = True
+        self.ticklabelsOn = True
+
     @property
     def window(self):
         return self._window
@@ -22,7 +24,7 @@ class MainWindowController:
     @window.setter
     def window(self, new):
         self._window = new
-        
+
     def x_interval_getter(self) -> str:
         return self.window.x_interval.text()
 
@@ -35,17 +37,28 @@ class MainWindowController:
 
     def grid_change(self):
         self.gridOn = self.window.grid.isChecked()
-        self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn)
+        self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn,
+                                self.ticklabelsOn)
         return self.gridOn
+
     def axes_change(self):
         self.axisOn = self.window.axes.isChecked()
-        self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn)
+        self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn,
+                                self.ticklabelsOn)
         return self.axisOn
+
+    def ticklabels_changed(self):
+        self.ticklabelsOn = self.window.ticklabels.isChecked()
+        self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn,
+                                self.ticklabelsOn)
+        return self.ticklabelsOn
 
     def x_interval_changed(self):
         self.functions_selector()
+
     def y_interval_changed(self):
         self.functions_selector()
+
     def z_scale_changed(self):
         self.functions_selector()
 
@@ -58,4 +71,4 @@ class MainWindowController:
             self.function = models.functions.SphereFunction(x_interval_str=self.x_interval_getter(),
                                                             y_interval_str=self.y_interval_getter())
 
-        self.window.updateGraph(self.function.get_function(),self.z_scale_getter(),self.gridOn,self.axisOn)
+        self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn, self.ticklabelsOn)

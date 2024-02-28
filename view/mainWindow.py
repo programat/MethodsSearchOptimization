@@ -8,7 +8,6 @@ from view.graphWidget import GraphWidget
 from controllers.mainWindowController import MainWindowController
 
 
-
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -25,22 +24,15 @@ class MainWindow(QMainWindow):
         self.grid.stateChanged.connect(lambda: self.controller.grid_change())
         self.axes.stateChanged.connect(lambda: self.controller.axes_change())
         self.functionSelector.currentTextChanged.connect(lambda: self.controller.functions_selector())
-        self.x_interval.editingFinished.connect(lambda :self.controller.x_interval_changed())
-        self.y_interval.editingFinished.connect(lambda :self.controller.y_interval_changed())
-        self.z_scale.editingFinished.connect(lambda :self.controller.z_scale_changed())
-
+        self.x_interval.editingFinished.connect(lambda: self.controller.x_interval_changed())
+        self.y_interval.editingFinished.connect(lambda: self.controller.y_interval_changed())
+        self.z_scale.editingFinished.connect(lambda: self.controller.z_scale_changed())
+        self.ticklabels.stateChanged.connect(lambda: self.controller.ticklabels_changed())
         return self
 
-
-
-
-    def updateGraph(self, axes, z_scale, gridOn, axisOn):
-        self.graph.draw_graph(axes, z_scale, gridOn, axisOn)
-
+    def updateGraph(self, axes, z_scale, gridOn, axisOn, ticklabelsOn):
+        self.graph.draw_graph(axes, z_scale, gridOn, axisOn, ticklabelsOn)
 
     # def closeEvent(self, QCloseEvent):
     #     # del self.controllers
     #     sys.exit()
-
-
-

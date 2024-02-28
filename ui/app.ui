@@ -333,6 +333,16 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QCheckBox" name="ticklabels">
+         <property name="text">
+          <string>Цифры на оси</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item row="0" column="0">
@@ -425,7 +435,7 @@
      <x>0</x>
      <y>0</y>
      <width>1268</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

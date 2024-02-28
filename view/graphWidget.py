@@ -1,5 +1,4 @@
 from PyQt6 import QtWidgets
-from PyQt6.QtWidgets import QSizePolicy
 from matplotlib import pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -11,7 +10,6 @@ class GraphWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.fig = Figure()
-
         self.canvas = FigureCanvas(self.fig)
         self.toolbar = NavigationToolbar(self.canvas, self)
 
@@ -26,20 +24,12 @@ class GraphWidget(QtWidgets.QWidget):
         self.axes.zaxis.set_pane_color((1.0, 1.0, 1.0, 1.0))
 
 
-    def draw_graph(self, axes, z_mash, gridOn, axisOn):
+    def draw_graph(self, axes, z_mash, gridOn, axisOn, ticklabelsOn):
         # Clear the previous plot
         self.axes.clear()
 
-        max_x = max(axes[0][0])
-        for ax in axes[0]:
-            m=max(ax)
-            max_x=max(m,max_x)
-        max_y = max(axes[1][0])
-        for ax in axes[1]:
-            m = max(ax)
-            max_y = max(m, max_y)
         # Plot the new surface
-        self.axes.set_box_aspect([max_x/max_y,1,z_mash])
+        self.axes.set_box_aspect([1,1,z_mash])
         self.axes.plot_surface(axes[0], axes[1], axes[2], cmap='coolwarm')
 
         # True False
@@ -50,9 +40,16 @@ class GraphWidget(QtWidgets.QWidget):
         self.axes.yaxis.line.set_visible(axisOn)
         self.axes.zaxis.line.set_visible(axisOn)
 
-        self.axes.xaxis.set_ticklabels([])
-        self.axes.yaxis.set_ticklabels([])
-        self.axes.zaxis.set_ticklabels([])
+        if ticklabelsOn:
+            # Remove tick labels
+            self.axes.xaxis.set_ticklabels([])
+            self.axes.yaxis.set_ticklabels([])
+            self.axes.zaxis.set_ticklabels([])
+
+            # Remove ticks (small lines)
+            self.axes.tick_params(axis='x', which='both', bottom=False, top=False)
+            self.axes.tick_params(axis='y', which='both', left=False, right=False)
+            self.axes.tick_params(axis='z', which='both', bottom=False, top=False)
 
 
         # Redraw the canvas
