@@ -57,6 +57,8 @@ class Gradient:
                 x1, y1 = next_point()
                 func1 = self.function.get_function_point(x1, y1)
                 func0 = self.function.get_function_point(self.x, self.y)
+                if self.x == x1 and self.y == y1:
+                    break
 
             if np.linalg.norm(np.array([y1, x1]) - np.array([self.y, self.x])) < self.eps2 and abs(
                     func1 - func0) < self.eps2:  # 9
@@ -68,7 +70,7 @@ class Gradient:
 
 
 if __name__ == '__main__':
-    grad = Gradient(MatiasFunction(0, 0), 2, 2, 100)
+    grad = Gradient(SphereFunction(10, 10), 2, 2, 10, stepSize=1)
     ans = [[], [], []]
     for el in grad.gradient_descent():
         ans[0].append(el[0])

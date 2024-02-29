@@ -13,7 +13,7 @@ class GraphWidget(QtWidgets.QWidget):
         self.canvas = FigureCanvas(self.fig)
         self.toolbar = NavigationToolbar(self.canvas, self)
 
-        self.axes = self.fig.add_subplot(111, projection='3d')
+        self.axes = self.fig.add_subplot(111, projection='3d',computed_zorder=False)
 
         layout = QtWidgets.QVBoxLayout(self)
         layout.addWidget(self.canvas)
@@ -30,7 +30,7 @@ class GraphWidget(QtWidgets.QWidget):
 
         # Plot the new surface
         self.axes.set_box_aspect([1,1,z_mash])
-        self.axes.plot_surface(axes[0], axes[1], axes[2], cmap='coolwarm')
+        self.axes.plot_surface(axes[0], axes[1], axes[2], alpha=0.5, cmap='coolwarm')
 
         # True False
         self.axes.grid(gridOn)
@@ -55,8 +55,8 @@ class GraphWidget(QtWidgets.QWidget):
         # Redraw the canvas
         self.canvas.draw()
 
-    def draw_point(self, x, y, z, color='r', marker='o'):
-        self.axes.scatter(x, y, z, color=color, marker=marker)
+    def draw_point(self, x, y, z, color='pink', marker='o'):
+        self.axes.scatter(x, y, z, color=color, marker=marker, s=10, zorder=10)
         self.canvas.draw()
 
 

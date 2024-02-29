@@ -35,7 +35,7 @@ class MainWindow(QMainWindow):
     def updateGraph(self, axes, z_scale, gridOn, axisOn, ticklabelsOn):
         self.graph.draw_graph(axes, z_scale, gridOn, axisOn, ticklabelsOn)
 
-    def updatePoint(self, x, y, z, color='r', marker='o'):
+    def updatePoint(self, x, y, z, color='pink', marker='o'):
         self.graph.draw_point(x, y, z, color, marker)
 
     # def closeEvent(self, QCloseEvent):

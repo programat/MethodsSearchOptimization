@@ -116,6 +116,7 @@ class MainWindowController:
 
             grad = Gradient(self.function, self.x_start, self.y_start, iterations=iter, stepSize=step_start)
             for el in grad.gradient_descent():
+                print(el)
                 self.window.updatePoint(*el[:3])
 
 
