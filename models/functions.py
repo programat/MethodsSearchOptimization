@@ -14,6 +14,14 @@ class Functions(ABC):
     def get_function(self) -> tuple:
         pass
 
+    @abstractmethod
+    def get_function_point(self, x, y):
+        pass
+
+    @abstractmethod
+    def get_derivative(self, x, y):
+        pass
+
 
 class MatiasFunction(Functions):
     def get_function(self):
@@ -23,6 +31,13 @@ class MatiasFunction(Functions):
         z = .26 * (x ** 2 + y ** 2) - .48 * x * y
         return x, y, z
 
+    def get_derivative(self, x, y):
+        return .52 * x - .48 * y, .52 * y - .48 * x
+
+    def get_function_point(self, x, y):
+        return .26 * (x ** 2 + y ** 2) - .48 * x * y
+
+
 class SphereFunction(Functions):
     def get_function(self):
         x = np.arange(self.x_interval[0], self.x_interval[1], 0.25)
@@ -30,3 +45,9 @@ class SphereFunction(Functions):
         x, y = np.meshgrid(x, y)
         z = np.array(x**2+y**2)
         return x, y, z
+
+    def get_derivative(self, x, y):
+        return 2*x, 2*y
+
+    def get_function_point(self, x, y):
+        return x**2+y**2
