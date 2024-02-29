@@ -40,7 +40,7 @@ class GraphWidget(QtWidgets.QWidget):
         self.axes.yaxis.line.set_visible(axisOn)
         self.axes.zaxis.line.set_visible(axisOn)
 
-        if ticklabelsOn:
+        if not ticklabelsOn:
             # Remove tick labels
             self.axes.xaxis.set_ticklabels([])
             self.axes.yaxis.set_ticklabels([])
@@ -54,3 +54,9 @@ class GraphWidget(QtWidgets.QWidget):
 
         # Redraw the canvas
         self.canvas.draw()
+
+    def draw_point(self, x, y, z, color='r', marker='o'):
+        self.axes.scatter(x, y, z, color=color, marker=marker)
+        self.canvas.draw()
+
+

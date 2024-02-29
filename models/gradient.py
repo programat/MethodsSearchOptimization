@@ -4,7 +4,7 @@ from models.functions import MatiasFunction, SphereFunction
 
 
 class Gradient:
-    def __init__(self, function_to_calc, x, y, iterations):
+    def __init__(self, function_to_calc, x, y, iterations, stepSize=random() * 2):
         self.x = x
         self.y = y
         self.gradient_value = None
@@ -12,8 +12,8 @@ class Gradient:
         self.eps1 = .0001
         self.eps2 = .0001
         self.iterationCount = iterations
-        self.stepSize = random() * 2
-        print("step is ", self.stepSize)
+        self.stepSize = stepSize
+        # print("step is ", self.stepSize)
 
     @property
     def iterations(self):
@@ -68,7 +68,7 @@ class Gradient:
 
 
 if __name__ == '__main__':
-    grad = Gradient(SphereFunction(0, 0), 2, 2, 100)
+    grad = Gradient(MatiasFunction(0, 0), 2, 2, 100)
     ans = [[], [], []]
     for el in grad.gradient_descent():
         ans[0].append(el[0])

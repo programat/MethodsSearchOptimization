@@ -28,10 +28,15 @@ class MainWindow(QMainWindow):
         self.y_interval.editingFinished.connect(lambda: self.controller.y_interval_changed())
         self.z_scale.editingFinished.connect(lambda: self.controller.z_scale_changed())
         self.ticklabels.stateChanged.connect(lambda: self.controller.ticklabels_changed())
+
+        self.startButton.clicked.connect(lambda: self.controller.start_calc())
         return self
 
     def updateGraph(self, axes, z_scale, gridOn, axisOn, ticklabelsOn):
         self.graph.draw_graph(axes, z_scale, gridOn, axisOn, ticklabelsOn)
+
+    def updatePoint(self, x, y, z, color='r', marker='o'):
+        self.graph.draw_point(x, y, z, color, marker)
 
     # def closeEvent(self, QCloseEvent):
     #     # del self.controllers

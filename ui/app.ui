@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>FFFFFFFFFFFFFFFFF</string>
+   <string>Search Optimization</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="Line" name="line">
@@ -48,9 +48,9 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="tab_gradient">
+    <widget class="QWidget" name="tab_lab1">
      <attribute name="title">
-      <string>Градиент</string>
+      <string>lab1</string>
      </attribute>
      <widget class="QWidget" name="gridLayoutWidget_2">
       <property name="geometry">
@@ -85,7 +85,11 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QLineEdit" name="iter_count"/>
+        <widget class="QLineEdit" name="iter_count">
+         <property name="text">
+          <string>10</string>
+         </property>
+        </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label">
@@ -98,7 +102,11 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="y_start"/>
+        <widget class="QLineEdit" name="y_start">
+         <property name="text">
+          <string>2</string>
+         </property>
+        </widget>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_4">
@@ -111,7 +119,11 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="x_start"/>
+        <widget class="QLineEdit" name="x_start">
+         <property name="text">
+          <string>2</string>
+         </property>
+        </widget>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_2">
@@ -141,10 +153,18 @@
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QLineEdit" name="delay"/>
+        <widget class="QLineEdit" name="delay">
+         <property name="text">
+          <string>1</string>
+         </property>
+        </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="start_step"/>
+        <widget class="QLineEdit" name="start_step">
+         <property name="text">
+          <string>1</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -154,7 +174,7 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>170</x>
         <y>260</y>
         <width>121</width>
         <height>51</height>
@@ -183,10 +203,257 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="tab_lab2">
      <attribute name="title">
-      <string>Dev</string>
+      <string>lab2</string>
      </attribute>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>110</y>
+        <width>131</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Academy Engraved LET</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string>👷🏻👷🏻👷🏻</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>lab3</string>
+     </attribute>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>110</y>
+        <width>131</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Academy Engraved LET</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string>👷🏻👷🏻👷🏻</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>lab4</string>
+     </attribute>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>110</y>
+        <width>131</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Academy Engraved LET</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string>👷🏻👷🏻👷🏻</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>lab5</string>
+     </attribute>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>110</y>
+        <width>131</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Academy Engraved LET</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string>👷🏻👷🏻👷🏻</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_6">
+     <attribute name="title">
+      <string>lab6</string>
+     </attribute>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>110</y>
+        <width>131</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Academy Engraved LET</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string>👷🏻👷🏻👷🏻</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_7">
+     <attribute name="title">
+      <string>lab7</string>
+     </attribute>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>110</y>
+        <width>131</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Academy Engraved LET</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string>👷🏻👷🏻👷🏻</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_8">
+     <attribute name="title">
+      <string>lab8</string>
+     </attribute>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>110</y>
+        <width>131</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Academy Engraved LET</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string>👷🏻👷🏻👷🏻</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QFrame" name="frame">
