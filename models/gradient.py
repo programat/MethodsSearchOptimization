@@ -11,6 +11,7 @@ class Gradient:
         self.function = function_to_calc
         self.eps1 = .0001
         self.eps2 = .0001
+        self.eps = 0.0001
         self.iterationCount = iterations
         self.stepSize = stepSize
         # print("step is ", self.stepSize)
@@ -52,13 +53,12 @@ class Gradient:
             func1 = self.function.get_function_point(x1, y1)
             func0 = self.function.get_function_point(self.x, self.y)
 
-            while not func1 < func0:
+            while not func1 - func0 < 0 and k < self.iterations:
+                k = k + 1
                 self.stepSize /= 2
                 x1, y1 = next_point()
                 func1 = self.function.get_function_point(x1, y1)
                 func0 = self.function.get_function_point(self.x, self.y)
-                if self.x == x1 and self.y == y1:
-                    break
 
             if np.linalg.norm(np.array([y1, x1]) - np.array([self.y, self.x])) < self.eps2 and abs(
                     func1 - func0) < self.eps2:  # 9

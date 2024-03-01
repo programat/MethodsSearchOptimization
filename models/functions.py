@@ -51,3 +51,56 @@ class SphereFunction(Functions):
 
     def get_function_point(self, x, y):
         return x**2+y**2
+
+class AckleyFunction(Functions):
+    def get_function(self):
+        x = np.arange(self.x_interval[0], self.x_interval[1], 0.25)
+        y = np.arange(self.y_interval[0], self.y_interval[1], 0.25)
+        x, y = np.meshgrid(x, y)
+        a = 20
+        b = 0.2
+        c = 2 * np.pi
+        term1 = -a * np.exp(-b * np.sqrt(0.5 * (x**2 + y**2)))
+        term2 = -np.exp(0.5 * (np.cos(c * x) + np.cos(c * y)))
+        z = a + np.exp(1) + term1 + term2
+        return x, y, z
+
+    def get_derivative(self, x, y):
+        a = 20
+        b = 0.2
+        c = 2 * np.pi
+        e = np.exp(1)
+        sqrt_term = np.sqrt(0.5 * (x**2 + y**2))
+        cos_term_x = np.cos(c * x)
+        cos_term_y = np.cos(c * y)
+
+        dz_dx = a * b * x * np.exp(-b * sqrt_term) + 0.5 * c * e * np.sin(c * x)
+        dz_dy = a * b * y * np.exp(-b * sqrt_term) + 0.5 * c * e * np.sin(c * y)
+
+        return dz_dx, dz_dy
+
+    def get_function_point(self, x, y):
+        a = 20
+        b = 0.2
+        c = 2 * np.pi
+        term1 = -a * np.exp(-b * np.sqrt(0.5 * (x**2 + y**2)))
+        term2 = -np.exp(0.5 * (np.cos(c * x) + np.cos(c * y)))
+        return a + np.exp(1) + term1 + term2
+
+class CamelThreeHumpFunction(Functions):
+    def get_function(self):
+        x = np.arange(self.x_interval[0], self.x_interval[1], 0.25)
+        y = np.arange(self.y_interval[0], self.y_interval[1], 0.25)
+        x, y = np.meshgrid(x, y)
+        z = 2*x**2 - 1.05*x**4 + x**6/6 + x*y + y**2
+        return x, y, z
+
+    def get_derivative(self, x, y):
+        df_dx = x**5 - 42 * x**3 + 4 *x
+        df_dy = 2 * (x**2 + y - 11) + 4 * y * (x + y**2 - 7)
+        return df_dx, df_dy
+
+    def get_function_point(self, x, y):
+        return (x**2 + y - 11)**2 + (x + y**2 - 7)**2
+
+

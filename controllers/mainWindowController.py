@@ -77,6 +77,12 @@ class MainWindowController:
         elif selected_function == 'Функция сферы':
             self.function = models.functions.SphereFunction(x_interval_str=self.x_interval_getter(),
                                                             y_interval_str=self.y_interval_getter())
+        elif selected_function == 'Функция Экли':
+            self.function = models.functions.AckleyFunction(x_interval_str=self.x_interval_getter(),
+                                                            y_interval_str=self.y_interval_getter())
+        elif selected_function == 'Функция верблюда':
+            self.function = models.functions.CamelThreeHumpFunction(x_interval_str=self.x_interval_getter(),
+                                                                    y_interval_str=self.y_interval_getter())
 
         self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn,
                                 self.ticklabelsOn)
@@ -98,28 +104,46 @@ class MainWindowController:
     def delay_getter(self):
         return self.window.delay.text()
 
+    def text_output_append(self, text):
+        self.window.textOutput.append(text)
+
+    def text_output_clear(self):
+        self.window.textOutput.clear()
+
     # 1-ый питоновский react компонент
     # Егор одобряет!
     # Дальше читать нельзя Жуку А С
     # Остальным можно
     def start_calc(self):
+        self.functions_selector()
 
         self.start_x_getter()
         self.start_y_getter()
-
         try:
             self.x_start = float(self.x_start)
             self.y_start = float(self.y_start)
             step_start = float(self.start_step_getter())
             iter = float(self.iter_getter())
-            delay = float(self.delay_getter())
 
+            self.window.updatePoint(self.x_start, self.y_start,
+                                    self.function.get_function_point(self.x_start, self.y_start), color='red')
+
+            self.text_output_clear()
             grad = Gradient(self.function, self.x_start, self.y_start, iterations=iter, stepSize=step_start)
-            for el in grad.gradient_descent():
-                print(el)
-                self.window.updatePoint(*el[:3])
+            for i, el in enumerate(grad.gradient_descent()):
+                if i != 0: self.window.updatePoint(*el[:3])
+                self.text_output_append(
+                    f'{i}:  (x, y, function) = ({round(el[0], 5)}, {round(el[1], 5)}, {round(el[2], 5)})')
+                point = el[:3]
+            self.window.updatePoint(*point, color='green')
 
+            def Arrow3D(ax, x, y, z, dx, dy, dz, color='red', arrow_length_ratio=0.1, lw=2):
+                ax.quiver(x, y, z, dx, dy, dz, color=color, arrow_length_ratio=arrow_length_ratio,
+                          lw=lw)
 
+            Arrow3D(self.window.graph.axes, self.x_start, self.y_start,
+                    self.function.get_function_point(self.x_start, self.y_start) + 4, 0, 0, -4)
+            Arrow3D(self.window.graph.axes, point[0], point[1], point[2] + 4, 0, 0, -4, color='green')
 
         except TypeError or ValueError as ex:
             # QMessageBox.warning(self.window, "Warning", "Wrong Data")
