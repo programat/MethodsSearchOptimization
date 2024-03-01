@@ -655,6 +655,11 @@
        </item>
        <item>
         <property name="text">
+         <string>Функция верблюда</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>Функция сферы</string>
         </property>
        </item>
@@ -690,7 +695,7 @@
      <x>0</x>
      <y>0</y>
      <width>1268</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

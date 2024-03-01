@@ -96,7 +96,7 @@ class CamelThreeHumpFunction(Functions):
         return x, y, z
 
     def get_derivative(self, x, y):
-        df_dx = x**5 - 4.2 * x**3 + 4 *x
+        df_dx = x**5 - 4.2 * x**3 + 4 * x + y
         df_dy = x + 2 * y
         return df_dx, df_dy
 
