@@ -59,6 +59,7 @@ class Gradient:
                 x1, y1 = next_point()
                 func1 = self.function.get_function_point(x1, y1)
                 func0 = self.function.get_function_point(self.x, self.y)
+                yield self.x, self.y, func1, k
 
             if np.linalg.norm(np.array([y1, x1]) - np.array([self.y, self.x])) < self.eps2 and abs(
                     func1 - func0) < self.eps2:  # 9

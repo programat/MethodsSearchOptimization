@@ -141,9 +141,10 @@ class MainWindowController:
                 ax.quiver(x, y, z, dx, dy, dz, color=color, arrow_length_ratio=arrow_length_ratio,
                           lw=lw)
 
+            arrowHeight = self.window.graph.axes.get_zlim()[1]/10
             Arrow3D(self.window.graph.axes, self.x_start, self.y_start,
-                    self.function.get_function_point(self.x_start, self.y_start) + 4, 0, 0, -4)
-            Arrow3D(self.window.graph.axes, point[0], point[1], point[2] + 4, 0, 0, -4, color='green')
+                    self.function.get_function_point(self.x_start, self.y_start) + arrowHeight, 0, 0, -arrowHeight)
+            Arrow3D(self.window.graph.axes, point[0], point[1], point[2] + arrowHeight, 0, 0, -arrowHeight, color='green')
 
         except TypeError or ValueError as ex:
             # QMessageBox.warning(self.window, "Warning", "Wrong Data")
