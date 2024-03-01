@@ -70,12 +70,12 @@ class AckleyFunction(Functions):
         b = 0.2
         c = 2 * np.pi
         e = np.exp(1)
-        sqrt_term = np.sqrt(0.5 * (x**2 + y**2))
+        sqrt_term = np.sqrt(x**2 + y**2)
         cos_term_x = np.cos(c * x)
         cos_term_y = np.cos(c * y)
 
-        dz_dx = a * b * x * np.exp(-b * sqrt_term) + 0.5 * c * e * np.sin(c * x)
-        dz_dy = a * b * y * np.exp(-b * sqrt_term) + 0.5 * c * e * np.sin(c * y)
+        dz_dx = -a * np.exp(-0.141421 * sqrt_term) - np.exp(.5*(cos_term_x + cos_term_y)) + 20 + np.exp(1)
+        dz_dy = -a * np.exp(-0.141421 * sqrt_term) - np.exp(.5*(cos_term_x + cos_term_y)) + 20 + np.exp(1)
 
         return dz_dx, dz_dy
 

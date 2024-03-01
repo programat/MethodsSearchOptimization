@@ -75,7 +75,7 @@ if __name__ == '__main__':
     ans = [[], [], []]
     for el in grad.gradient_descent():
         ans[0].append(el[0])
-        ans[1].append(el[1])
+        # ans[1].append(el[1])
         ans[2].append(el[2])
 
     print(f'{ans[0][-1]}\n'
