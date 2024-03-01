@@ -59,4 +59,3 @@ class GraphWidget(QtWidgets.QWidget):
         self.axes.scatter(x, y, z, color=color, marker=marker, s=10, zorder=10)
         self.canvas.draw()
 
-

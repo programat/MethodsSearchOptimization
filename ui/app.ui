@@ -74,35 +74,22 @@
        <property name="verticalSpacing">
         <number>21</number>
        </property>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_3">
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="start_step">
          <property name="text">
-          <string>Начальный шаг</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QLineEdit" name="iter_count">
-         <property name="text">
-          <string>10</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>X</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <string>1</string>
          </property>
         </widget>
        </item>
        <item row="2" column="1">
         <widget class="QLineEdit" name="y_start">
+         <property name="text">
+          <string>2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="x_start">
          <property name="text">
           <string>2</string>
          </property>
@@ -118,10 +105,20 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="x_start">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_6">
          <property name="text">
-          <string>2</string>
+          <string>Начальная точка</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Начальный шаг</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -135,34 +132,20 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_5">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label">
          <property name="text">
-          <string>Задержка</string>
+          <string>X</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_6">
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="iter_count">
          <property name="text">
-          <string>Начальная точка</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLineEdit" name="delay">
-         <property name="text">
-          <string>1</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="start_step">
-         <property name="text">
-          <string>1</string>
+          <string>10</string>
          </property>
         </widget>
        </item>
@@ -673,6 +656,11 @@
        <item>
         <property name="text">
          <string>Функция сферы</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Функция Экли</string>
         </property>
        </item>
       </widget>

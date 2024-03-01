@@ -58,6 +58,7 @@ class Gradient:
                 func1 = self.function.get_function_point(x1, y1)
                 func0 = self.function.get_function_point(self.x, self.y)
                 if self.x == x1 and self.y == y1:
+                    print('gotcha')
                     break
 
             if np.linalg.norm(np.array([y1, x1]) - np.array([self.y, self.x])) < self.eps2 and abs(
