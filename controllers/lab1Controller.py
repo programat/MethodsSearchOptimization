@@ -36,6 +36,12 @@ class Lab1Controller:
     def set_function(self, function):
         self.function = function
 
+    def delay_getter(self):
+        delay = self.window.lab1_delay.text()
+        if delay.replace(' ', '') != '' or float(delay) in range(0, 10):
+            return float(delay)
+        return 0.1
+
     # 1-ый питоновский react компонент
     # Егор одобряет!
     # Дальше читать нельзя Жуку А С
@@ -48,28 +54,28 @@ class Lab1Controller:
             self.y_start = float(self.y_start)
             step_start = float(self.start_step_getter())
             iter = float(self.iter_getter())
+            delay = float(self.delay_getter())
 
             self.window.updatePoint(self.x_start, self.y_start,
-                                    self.function.get_function_point(self.x_start, self.y_start), color='red')
+                                    self.function.get_function_point(self.x_start, self.y_start), color='red',
+                                    delay=delay)
+
+            arrowHeight = self.window.graph.axes.get_zlim()[1] / 10
+            self.window.graph.draw_arrow(self.x_start, self.y_start,
+                                         self.function.get_function_point(self.x_start, self.y_start) + arrowHeight,
+                                         0, 0, -arrowHeight)
 
             self.window.textOutput.clear()
             grad = Gradient(self.function, self.x_start, self.y_start, iterations=iter, stepSize=step_start)
             for i, el in enumerate(grad.gradient_descent()):
                 if i != 0:
-                    self.window.updatePoint(*el[:3], delay=0.1)
+                    self.window.updatePoint(*el[:3], delay=delay)
                 text = f'{i}:  (x, y, function) = ({round(el[0], 5)}, {round(el[1], 5)}, {round(el[2], 5)})'
-                self.window.updateText(text, delay=0.1)
+                self.window.updateText(text, delay=delay)
                 point = el[:3]
-            self.window.updatePoint(*point, color='green')
 
-            def Arrow3D(ax, x, y, z, dx, dy, dz, color='red', arrow_length_ratio=0.1, lw=2):
-                ax.quiver(x, y, z, dx, dy, dz, color=color, arrow_length_ratio=arrow_length_ratio,
-                          lw=lw)
-
-            arrowHeight = self.window.graph.axes.get_zlim()[1]/10
-            Arrow3D(self.window.graph.axes, self.x_start, self.y_start,
-                    self.function.get_function_point(self.x_start, self.y_start) + arrowHeight, 0, 0, -arrowHeight)
-            Arrow3D(self.window.graph.axes, point[0], point[1], point[2] + arrowHeight, 0, 0, -arrowHeight, color='green')
+            self.window.updatePoint(*point, color='green', delay=delay)
+            self.window.graph.draw_arrow(point[0], point[1], point[2] + arrowHeight, 0, 0, -arrowHeight, color='green')
 
         except TypeError or ValueError as ex:
             print(ex)

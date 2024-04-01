@@ -9,6 +9,10 @@ import numpy as np
 class GraphWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
+
+        self.points = []
+        self.arrows = []
+
         self.fig = Figure()
         self.canvas = FigureCanvas(self.fig)
         self.toolbar = NavigationToolbar(self.canvas, self)
@@ -55,7 +59,37 @@ class GraphWidget(QtWidgets.QWidget):
         # Redraw the canvas
         self.canvas.draw()
 
-    def draw_point(self, x, y, z, color='pink', marker='o'):
-        self.axes.scatter(x, y, z, color=color, marker=marker, s=10, zorder=10)
+    def draw_arrow(self, x, y, z, dx, dy, dz, color='red', arrow_length_ratio=0.1, lw=2):
+        arrow = self.axes.quiver(x, y, z, dx, dy, dz, color=color, arrow_length_ratio=arrow_length_ratio, lw=lw)
+        self.arrows.append(arrow)  # Сохраняем ссылку на стрелку
         self.canvas.draw()
+
+    def remove_arrow(self, index):
+        if 0 <= index < len(self.arrows):
+            arrow = self.arrows.pop(index)  # Удаляем ссылку на стрелку из списка
+            arrow.remove()  # Удаляем стрелку с графика
+            self.canvas.draw()
+
+    def clear_arrows(self):
+        for arrow in self.arrows:
+            arrow.remove()  # Удаляем все стрелки с графика
+        self.arrows.clear()  # Очищаем список ссылок на стрелки
+        self.canvas.draw()
+
+    def draw_point(self, x, y, z, color='pink', marker='o'):
+        self.points.append(self.axes.scatter(x, y, z, color=color, marker=marker, s=10, zorder=10))
+        self.canvas.draw()
+
+    def remove_point(self, index):
+        if 0 <= index < len(self.points):
+            point = self.points.pop(index)  # Удаляем ссылку на точку из списка
+            point.remove()  # Удаляем точку с графика
+            self.canvas.draw()
+
+    def clear_points(self):
+        for point in self.points:
+            point.remove()  # Удаляем все точки с графика
+        self.points.clear()  # Очищаем список ссылок на точки
+        self.canvas.draw()
+        self.clear_arrows()
 

@@ -1,16 +1,7 @@
-import os
-import sys
-import time
-
-from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6 import uic, QtWidgets
-from PyQt6.QtCore import QTimer
-
 import models.functions
 from models.gradient import Gradient
 from view.graphWidget import GraphWidget
 from models import *
-from controllers.lab1Controller import Lab1Controller
 
 
 class MainWindowController:
@@ -87,8 +78,7 @@ class MainWindowController:
     # разрабатывалось все это по вотерфоллу, понимаете да
     def clear_all(self):
         self.text_output_clear()
-        self.functions_selector()
-        self.lab_selector()
+        self.window.graph.clear_points()
 
     def functions_selector(self):
         selected_function = self.window.functionSelector.currentText()
@@ -117,6 +107,7 @@ class MainWindowController:
         if current_tab == self.window.tab_lab1:
             print('switching to tab lab1')
             self.labController = self.window.lab1_controller
+            self.functions_selector()
         elif current_tab == self.window.tab_lab2:
             self.window.functionSelector.setEnabled(False)
             self.function_setter(models.functions.FunctionLab2())

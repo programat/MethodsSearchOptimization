@@ -39,14 +39,14 @@
       <x>20</x>
       <y>20</y>
       <width>471</width>
-      <height>341</height>
+      <height>351</height>
      </rect>
     </property>
     <property name="autoFillBackground">
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_lab1">
      <attribute name="title">
@@ -58,7 +58,7 @@
         <x>0</x>
         <y>0</y>
         <width>461</width>
-        <height>251</height>
+        <height>261</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -74,51 +74,10 @@
        <property name="verticalSpacing">
         <number>21</number>
        </property>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="start_step">
-         <property name="text">
-          <string>1</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="y_start">
-         <property name="text">
-          <string>2</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="1">
         <widget class="QLineEdit" name="x_start">
          <property name="text">
           <string>2</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Число итераций</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>Начальная точка</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Начальный шаг</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -132,6 +91,40 @@
          </property>
         </widget>
        </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="lab1_delay">
+         <property name="text">
+          <string>0.1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Задержка</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Начальный шаг</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="y_start">
+         <property name="text">
+          <string>2</string>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
@@ -142,10 +135,41 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Начальная точка</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="start_step">
+         <property name="text">
+          <string>1</string>
+         </property>
+        </widget>
+       </item>
        <item row="4" column="1">
         <widget class="QLineEdit" name="iter_count">
          <property name="text">
           <string>10</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Число итераций</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -158,7 +182,7 @@
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>260</y>
+        <y>270</y>
         <width>121</width>
         <height>51</height>
        </rect>
@@ -194,7 +218,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>40</y>
+        <y>20</y>
         <width>431</width>
         <height>191</height>
        </rect>
@@ -231,7 +255,7 @@
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>260</y>
+        <y>270</y>
         <width>121</width>
         <height>51</height>
        </rect>
@@ -256,6 +280,48 @@
       </property>
       <property name="text">
        <string>Запуск</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lab2_delay">
+      <property name="geometry">
+       <rect>
+        <x>114</x>
+        <y>239</y>
+        <width>346</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0.1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>239</y>
+        <width>105</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Задержка</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="Line" name="line_3">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>216</y>
+        <width>459</width>
+        <height>3</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </widget>
@@ -480,9 +546,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>360</y>
+      <y>370</y>
       <width>471</width>
-      <height>261</height>
+      <height>251</height>
      </rect>
     </property>
     <property name="autoFillBackground">
