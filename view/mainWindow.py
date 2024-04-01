@@ -4,22 +4,40 @@ import sys
 from PyQt6.QtGui import QFocusEvent
 from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit
 from PyQt6 import uic, QtWidgets
+
 from view.graphWidget import GraphWidget
 from controllers.mainWindowController import MainWindowController
+
+from controllers.lab1Controller import Lab1Controller
+from view.lab1View import Lab1View
+from controllers.lab2Controller import Lab2Controller
+from view.lab2View import Lab2View
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.lab1_view = None
+        self.lab1_controller = None
         self.graph = GraphWidget()
         self.controller = MainWindowController(self)
+        self.setupUi()
 
-    def create(self):
+    def setupUi(self):
         uic.loadUi(os.path.join(os.path.dirname(__file__), '..//ui//app.ui'), self)
-        self.controller.functions_selector()
         layout = QtWidgets.QVBoxLayout(
             self.graphFrame)  # Assuming graphFrame is the name of a container widget in your UI
         layout.addWidget(self.graph)
+        return self
+
+    def create(self):
+        self.lab1_controller = Lab1Controller(self)
+        self.lab1_view = Lab1View(self, self.lab1_controller)
+        self.lab2_controller = Lab2Controller(self)
+        self.lab2_view = Lab2View(self, self.lab2_controller)
+
+        self.controller.lab_selector()
+        self.controller.functions_selector()
 
         self.grid.stateChanged.connect(lambda: self.controller.grid_change())
         self.axes.stateChanged.connect(lambda: self.controller.axes_change())
@@ -29,7 +47,10 @@ class MainWindow(QMainWindow):
         self.z_scale.editingFinished.connect(lambda: self.controller.z_scale_changed())
         self.ticklabels.stateChanged.connect(lambda: self.controller.ticklabels_changed())
 
-        self.startButton.clicked.connect(lambda: self.controller.start_calc())
+        self.tabWidget.currentChanged.connect(lambda: self.controller.lab_selector())
+
+        self.clear_all.clicked.connect(lambda: self.controller.clear_all())
+
         return self
 
     def updateGraph(self, axes, z_scale, gridOn, axisOn, ticklabelsOn):

@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 
 class Functions(ABC):
-    def __init__(self, x_interval_str, y_interval_str):
+    def __init__(self, x_interval_str='(-5;5)', y_interval_str='(-5;5)'):
         try:
             self.x_interval = list(map(float, x_interval_str.replace(')', '', 1).replace('(', '', 1).split(';')))
             self.y_interval = list(map(float, y_interval_str.replace(')', '', 1).replace('(', '', 1).split(';')))
@@ -104,3 +104,16 @@ class CamelThreeHumpFunction(Functions):
         return 2*x**2 - 1.05*x**4 + x**6/6 + x*y + y**2
 
 
+class FunctionLab2(Functions):
+    def get_function(self):
+        x = np.arange(self.x_interval[0], self.x_interval[1], 0.25)
+        y = np.arange(self.y_interval[0], self.y_interval[1], 0.25)
+        x, y = np.meshgrid(x, y)
+        z = 2 * x ** 2 + 3 * y ** 2 + 4 * x * y - 6 * x - 3 * y
+        return x, y, z
+
+    def get_derivative(self, x, y):
+        pass
+
+    def get_function_point(self, x, y):
+        return 2 * x ** 2 + 3 * y ** 2 + 4 * x * y - 6 * x - 3 * y
