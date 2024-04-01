@@ -1,6 +1,8 @@
 import os
 import sys
+import time
 
+from PyQt6.QtCore import QThreadPool, QRunnable, pyqtSignal, QThread
 from PyQt6.QtGui import QFocusEvent
 from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit
 from PyQt6 import uic, QtWidgets
@@ -21,13 +23,20 @@ class MainWindow(QMainWindow):
         self.lab1_controller = None
         self.graph = GraphWidget()
         self.controller = MainWindowController(self)
+
+        self.point_thread = PointThread(self)
+        self.point_thread.point_signal.connect(self.graph.draw_point)
+
         self.setupUi()
+
 
     def setupUi(self):
         uic.loadUi(os.path.join(os.path.dirname(__file__), '..//ui//app.ui'), self)
         layout = QtWidgets.QVBoxLayout(
             self.graphFrame)  # Assuming graphFrame is the name of a container widget in your UI
         layout.addWidget(self.graph)
+
+
         return self
 
     def create(self):
@@ -56,9 +65,24 @@ class MainWindow(QMainWindow):
     def updateGraph(self, axes, z_scale, gridOn, axisOn, ticklabelsOn):
         self.graph.draw_graph(axes, z_scale, gridOn, axisOn, ticklabelsOn)
 
-    def updatePoint(self, x, y, z, color='pink', marker='o'):
-        self.graph.draw_point(x, y, z, color, marker)
+    def updatePoint(self, x, y, z, color='pink', marker='o', delay=0):
+        self.point_thread.add_point(x, y, z, color, marker, delay)
+        if not self.point_thread.isRunning():
+            self.point_thread.start()
 
-    # def closeEvent(self, QCloseEvent):
-    #     # del self.controllers
-    #     sys.exit()
+class PointThread(QThread):
+    point_signal = pyqtSignal(float, float, float, str, str)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.points = []
+
+    def add_point(self, x, y, z, color, marker, delay):
+        self.points.append((x, y, z, color, marker, delay))
+
+    def run(self):
+        for point in self.points:
+            x, y, z, color, marker, delay = point
+            self.msleep(int(delay * 1000))
+            self.point_signal.emit(x, y, z, color, marker)
+        self.points.clear()

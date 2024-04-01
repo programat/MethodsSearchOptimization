@@ -1,3 +1,9 @@
+import sys
+import traceback
+
+from PyQt6.QtCore import pyqtSignal
+from PySide6.QtCore import QRunnable
+
 from models.gradient import Gradient
 
 class Lab1Controller:
@@ -49,7 +55,8 @@ class Lab1Controller:
             self.window.textOutput.clear()
             grad = Gradient(self.function, self.x_start, self.y_start, iterations=iter, stepSize=step_start)
             for i, el in enumerate(grad.gradient_descent()):
-                if i != 0: self.window.updatePoint(*el[:3])
+                if i != 0:
+                    self.window.updatePoint(*el[:3], delay=0.1)
                 self.window.textOutput.append(
                     f'{i}:  (x, y, function) = ({round(el[0], 5)}, {round(el[1], 5)}, {round(el[2], 5)})')
                 point = el[:3]
@@ -66,3 +73,18 @@ class Lab1Controller:
 
         except TypeError or ValueError as ex:
             print(ex)
+
+# class Worker(QRunnable):
+#     def __init__(self, fn, *args, **kwargs):
+#         super(Worker, self).__init__()
+#
+#         # Store constructor arguments (re-used for processing)
+#         self.fn = fn
+#         self.args = args
+#         self.kwargs = kwargs
+#         self.signal = pyqtSignal(float,float,float,str,str)
+#
+#     @pyqtSlot()
+#     def run(self):
+#         result = self.fn(*self.args, **self.kwargs)
+#         self.signals.result.emit(result)
