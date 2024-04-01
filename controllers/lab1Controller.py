@@ -57,8 +57,8 @@ class Lab1Controller:
             for i, el in enumerate(grad.gradient_descent()):
                 if i != 0:
                     self.window.updatePoint(*el[:3], delay=0.1)
-                self.window.textOutput.append(
-                    f'{i}:  (x, y, function) = ({round(el[0], 5)}, {round(el[1], 5)}, {round(el[2], 5)})')
+                text = f'{i}:  (x, y, function) = ({round(el[0], 5)}, {round(el[1], 5)}, {round(el[2], 5)})'
+                self.window.updateText(text, delay=0.1)
                 point = el[:3]
             self.window.updatePoint(*point, color='green')
 

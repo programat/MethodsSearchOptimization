@@ -2,7 +2,7 @@ import os
 import sys
 import time
 
-from PyQt6.QtCore import QThreadPool, QRunnable, pyqtSignal, QThread
+from PyQt6.QtCore import QThreadPool, QRunnable, pyqtSignal, QThread, QTimer
 from PyQt6.QtGui import QFocusEvent
 from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit
 from PyQt6 import uic, QtWidgets
@@ -24,8 +24,9 @@ class MainWindow(QMainWindow):
         self.graph = GraphWidget()
         self.controller = MainWindowController(self)
 
+        self.text_thread = TextThread(self)
         self.point_thread = PointThread(self)
-        self.point_thread.point_signal.connect(self.graph.draw_point)
+
 
         self.setupUi()
 
@@ -35,8 +36,6 @@ class MainWindow(QMainWindow):
         layout = QtWidgets.QVBoxLayout(
             self.graphFrame)  # Assuming graphFrame is the name of a container widget in your UI
         layout.addWidget(self.graph)
-
-
         return self
 
     def create(self):
@@ -60,6 +59,9 @@ class MainWindow(QMainWindow):
 
         self.clear_all.clicked.connect(lambda: self.controller.clear_all())
 
+        self.text_thread.text_signal.connect(self.textOutput.append)
+        self.point_thread.point_signal.connect(self.graph.draw_point)
+
         return self
 
     def updateGraph(self, axes, z_scale, gridOn, axisOn, ticklabelsOn):
@@ -69,6 +71,27 @@ class MainWindow(QMainWindow):
         self.point_thread.add_point(x, y, z, color, marker, delay)
         if not self.point_thread.isRunning():
             self.point_thread.start()
+
+    def updateText(self, text, delay=0):
+        self.text_thread.add_text(text, delay)
+        if not self.text_thread.isRunning():
+            self.text_thread.start()
+
+class TextThread(QThread):
+    text_signal = pyqtSignal(str)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.texts = []
+
+    def add_text(self, text, delay):
+        self.texts.append((text, delay))
+
+    def run(self):
+        for text, delay in self.texts:
+            self.msleep(int(delay * 1000))
+            self.text_signal.emit(text)
+        self.texts.clear()
 
 class PointThread(QThread):
     point_signal = pyqtSignal(float, float, float, str, str)
