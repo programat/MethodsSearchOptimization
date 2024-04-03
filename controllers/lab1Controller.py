@@ -56,8 +56,8 @@ class Lab1Controller:
             iter = float(self.iter_getter())
             delay = float(self.delay_getter())
 
-            self.window.updatePoint(self.x_start, self.y_start,
-                                    self.function.get_function_point(self.x_start, self.y_start), color='red',
+            self.window.updatePoint([[self.x_start, self.y_start,
+                                    self.function.get_function_point(self.x_start, self.y_start)]], color='red',
                                     delay=delay)
 
             arrowHeight = self.window.graph.axes.get_zlim()[1] / 10
@@ -69,12 +69,12 @@ class Lab1Controller:
             grad = Gradient(self.function, self.x_start, self.y_start, iterations=iter, stepSize=step_start)
             for i, el in enumerate(grad.gradient_descent()):
                 if i != 0:
-                    self.window.updatePoint(*el[:3], delay=delay)
+                    self.window.updatePoint(el[:3], delay=delay)
                 text = f'{i}:  (x, y, function) = ({round(el[0], 5)}, {round(el[1], 5)}, {round(el[2], 5)})'
                 self.window.updateText(text, delay=delay)
                 point = el[:3]
 
-            self.window.updatePoint(*point, color='green', delay=delay)
+            self.window.updatePoint(point, color='green', delay=delay)
             self.window.graph.draw_arrow(point[0], point[1], point[2] + arrowHeight, 0, 0, -arrowHeight, color='green')
 
         except TypeError or ValueError as ex:

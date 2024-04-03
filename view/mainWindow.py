@@ -14,6 +14,8 @@ from controllers.lab1Controller import Lab1Controller
 from view.lab1View import Lab1View
 from controllers.lab2Controller import Lab2Controller
 from view.lab2View import Lab2View
+from controllers.lab3Controller import Lab3Controller
+from view.lab3View import Lab3View
 
 
 class MainWindow(QMainWindow):
@@ -43,6 +45,8 @@ class MainWindow(QMainWindow):
         self.lab1_view = Lab1View(self, self.lab1_controller)
         self.lab2_controller = Lab2Controller(self)
         self.lab2_view = Lab2View(self, self.lab2_controller)
+        self.lab3_controller = Lab3Controller(self)
+        self.lab3_view = Lab3View(self, self.lab3_controller)
 
         self.controller.lab_selector()
         self.controller.functions_selector()
@@ -67,8 +71,8 @@ class MainWindow(QMainWindow):
     def updateGraph(self, axes, z_scale, gridOn, axisOn, ticklabelsOn):
         self.graph.draw_graph(axes, z_scale, gridOn, axisOn, ticklabelsOn)
 
-    def updatePoint(self, x, y, z, color='pink', marker='o', delay=0):
-        self.point_thread.add_point(x, y, z, color, marker, delay)
+    def updatePoint(self, points, color='pink', marker='o', delay=0):
+        self.point_thread.add_points(points, color, marker, delay)
         if not self.point_thread.isRunning():
             self.point_thread.start()
 
@@ -94,18 +98,22 @@ class TextThread(QThread):
         self.texts.clear()
 
 class PointThread(QThread):
-    point_signal = pyqtSignal(float, float, float, str, str)
+    point_signal = pyqtSignal(list, str, str)
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.points = []
 
-    def add_point(self, x, y, z, color, marker, delay):
-        self.points.append((x, y, z, color, marker, delay))
+    def add_points(self, points, color, marker, delay):
+        if isinstance(points, tuple):
+            points = [points]
+        print(self.points)
+        self.points.append((points, color, marker, delay))
 
     def run(self):
-        for point in self.points:
-            x, y, z, color, marker, delay = point
+        for point_data in self.points:
+            points, color, marker, delay = point_data
             self.msleep(int(delay * 1000))
-            self.point_signal.emit(x, y, z, color, marker)
+            self.point_signal.emit(points, color, marker)
+        GraphWidget().clear_points()  # Очищаем список точек
         self.points.clear()

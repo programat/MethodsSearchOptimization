@@ -115,4 +115,10 @@ class MainWindowController:
                                     self.ticklabelsOn)
             print('switching to tab lab2')
             self.labController = self.window.lab2_controller
-            pass
+        elif current_tab == self.window.tab_lab3:
+            self.window.functionSelector.setEnabled(False)
+            self.function_setter(models.functions.RosenbrockFunction())
+            self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn,
+                                    self.ticklabelsOn)
+            print('switching to tab lab3')
+            self.labController = self.window.lab3_controller

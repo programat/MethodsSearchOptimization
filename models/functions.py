@@ -117,3 +117,20 @@ class FunctionLab2(Functions):
 
     def get_function_point(self, x, y):
         return 2 * x ** 2 + 3 * y ** 2 + 4 * x * y - 6 * x - 3 * y
+
+
+class RosenbrockFunction(Functions):
+    def get_function(self):
+        x = np.arange(self.x_interval[0], self.x_interval[1], 0.25)
+        y = np.arange(self.y_interval[0], self.y_interval[1], 0.25)
+        x, y = np.meshgrid(x, y)
+        z = (1 - x)**2 + 100 * (y - x**2)**2
+        return x, y, z
+
+    def get_function_point(self, x, y):
+        return (1 - x)**2 + 100 * (y - x**2)**2
+
+    def get_derivative(self, x, y):
+        dx = -2 * (1 - x) - 400 * x * (y - x**2)
+        dy = 200 * (y - x**2)
+        return dx, dy
