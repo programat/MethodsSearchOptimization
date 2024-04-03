@@ -1,4 +1,3 @@
-import time
 import traceback
 
 from models.generations import GeneticAlgorithm
@@ -70,10 +69,10 @@ class Lab3Controller:
                 allPoints.append(points)
 
                 min_point = [round(i, 3) for i in min(points, key=lambda x: x[2])]
-                self.window.updateText(f'{i}: Best point: {min_point[0], min_point[1]}, f: {min_point[2]}', delay=.1)
+                self.window.updateText(f'{i}: Best point: {min_point[0], min_point[1]}, f: {min_point[2]}', delay=delay)
 
             print(allPoints)
-            self.window.updateListPoint(allPoints, marker='.', delay=.1)
+            self.window.updateListPoint(allPoints, marker='.', delay=delay)
 
 
 
@@ -87,7 +86,7 @@ class Lab3Controller:
             # for population in genetic_algorithm.run(x_bounds, y_bounds):
             #     # self.window.graph.clear_points()
             #     points = []
-            #     for individual in population:
+            #     for individual ibfn population:
             #         x, y, _ = individual
             #         points.append([x, y, self.function.get_function_point(x, y)])
             #
