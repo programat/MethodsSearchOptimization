@@ -26,12 +26,11 @@ class MainWindow(QMainWindow):
         self.graph = GraphWidget()
         self.controller = MainWindowController(self)
 
-        self.text_thread = TextThread(self)
-        self.point_thread = PointThread(self)
-
-
         self.setupUi()
 
+        self.text_thread = TextThread(self)
+        self.point_thread = PointThread(self)
+        self.point_list_thread = PointListThread(self, self.graph)
 
     def setupUi(self):
         uic.loadUi(os.path.join(os.path.dirname(__file__), '..//ui//app.ui'), self)
@@ -65,7 +64,8 @@ class MainWindow(QMainWindow):
 
         self.text_thread.text_signal.connect(self.textOutput.append)
         self.point_thread.point_signal.connect(self.graph.draw_point)
-
+        self.point_list_thread.point_signal.connect(self.graph.draw_point)
+        self.point_list_thread.clearPointsSignal.connect(self.graph.clear_points_dynamic)
         return self
 
     def updateGraph(self, axes, z_scale, gridOn, axisOn, ticklabelsOn):
@@ -76,10 +76,16 @@ class MainWindow(QMainWindow):
         if not self.point_thread.isRunning():
             self.point_thread.start()
 
+    def updateListPoint(self, points, color='pink', marker='o', delay=0):
+        self.point_list_thread.set_points(points, color, marker, delay)
+        if not self.point_list_thread.isRunning():
+            self.point_list_thread.start()
+
     def updateText(self, text, delay=0):
         self.text_thread.add_text(text, delay)
         if not self.text_thread.isRunning():
             self.text_thread.start()
+
 
 class TextThread(QThread):
     text_signal = pyqtSignal(str)
@@ -97,6 +103,7 @@ class TextThread(QThread):
             self.text_signal.emit(text)
         self.texts.clear()
 
+
 class PointThread(QThread):
     point_signal = pyqtSignal(list, str, str)
 
@@ -105,6 +112,7 @@ class PointThread(QThread):
         self.points = []
 
     def add_points(self, points, color, marker, delay):
+        # self.points= []
         if isinstance(points, tuple):
             points = [points]
         print(self.points)
@@ -115,5 +123,43 @@ class PointThread(QThread):
             points, color, marker, delay = point_data
             self.msleep(int(delay * 1000))
             self.point_signal.emit(points, color, marker)
-        GraphWidget().clear_points()  # Очищаем список точек
+        # GraphWidget().clear_points()  # Очищаем список точек
         self.points.clear()
+
+
+class PointListThread(QThread):
+    point_signal = pyqtSignal(list, str, str)
+    clearPointsSignal = pyqtSignal()  # Новый сигнал для очистки точек
+
+    def __init__(self, parent, graph):
+        super().__init__(parent)
+        self.points = []
+        self.painting = False
+        self.graph = graph
+
+    def add_points(self, points, color, marker, delay):
+        self.points = []
+        for el in points:
+            self.points.append((el, color, marker, delay))
+        # self.points=[points, color, marker, delay]
+        print(self.points)
+
+    def set_points(self, points, color, marker, delay):
+        # self.points.clear()
+        self.add_points(points, color, marker, delay)
+
+    def run(self):
+        for i, el in enumerate(self.points):
+            min_point = min(el[0], key=lambda x: x[2])
+            self.point_signal.emit([min_point], 'red', 'o')
+            self.point_signal.emit(el[0], el[1], el[2])
+            self.msleep(int(el[3] * 1000))
+            if i != len(self.points) - 1:
+                self.clearPointsSignal.emit()
+
+
+if __name__ == '__main__':
+    el = ([[-0.8708019971500014, -2.835048193475976, 1294.7122343670067],
+           [2.5610452515341384, -2.1829865304294636, 7644.587153709607],
+           [-0.6797552716973527, -2.1114463604657185, 665.1187974953248]], 'pink', '.', 0.1)
+    print(min(el[0], key=lambda x: x[2]))

@@ -1,3 +1,4 @@
+import time
 import traceback
 
 from models.generations import GeneticAlgorithm
@@ -56,13 +57,23 @@ class Lab3Controller:
 
             x_bounds = (-5, 5)
             y_bounds = (-5, 5)
-            for population in genetic_algorithm.run(x_bounds, y_bounds):
+
+            allPoints = []
+
+            for i, population in enumerate(genetic_algorithm.run(x_bounds, y_bounds)):
                 # self.window.graph.clear_points()
                 points = []
                 for individual in population:
                     x, y, _ = individual
                     points.append([x, y, self.function.get_function_point(x, y)])
-                self.window.updatePoint(points, marker='.', delay=1)
+
+                allPoints.append(points)
+
+                min_point = [round(i, 3) for i in min(points, key=lambda x: x[2])]
+                self.window.updateText(f'{i}: Best point: {min_point[0], min_point[1]}, f: {min_point[2]}', delay=.1)
+
+            print(allPoints)
+            self.window.updateListPoint(allPoints, marker='.', delay=.1)
 
 
 
@@ -71,3 +82,22 @@ class Lab3Controller:
 
         except TypeError or ValueError as ex:
             print(traceback.format_exc())
+
+
+            # for population in genetic_algorithm.run(x_bounds, y_bounds):
+            #     # self.window.graph.clear_points()
+            #     points = []
+            #     for individual in population:
+            #         x, y, _ = individual
+            #         points.append([x, y, self.function.get_function_point(x, y)])
+            #
+            #     allPoints.append(points)
+            #
+            # i = 0
+            # while (True):
+            #     if (not self.window.point_list_thread.painting):
+            #         self.window.graph.clear_points()
+            #         self.window.updateListPoint(allPoints[i], marker='.', delay=.1)
+            #         i = i + 1
+            #     if (i == len(allPoints)):
+            #         break

@@ -77,17 +77,18 @@ class GraphWidget(QtWidgets.QWidget):
         self.canvas.draw()
 
     def draw_point(self, points, color='pink', marker='o'):
+        print(points)
         for point in points:
             x, y, z = point
             self.points.append(self.axes.scatter(x, y, z, color=color, marker=marker, s=10, zorder=10))
         self.canvas.draw()
+
 
     def remove_point(self, index):
         if 0 <= index < len(self.points):
             point = self.points.pop(index)  # Удаляем ссылку на точку из списка
             point.remove()  # Удаляем точку с графика
             self.canvas.draw()
-
     def clear_points(self):
         for point in self.points:
             if isinstance(point, list):
@@ -97,4 +98,12 @@ class GraphWidget(QtWidgets.QWidget):
         self.points.clear()  # Очищаем список ссылок на точки
         self.canvas.draw()
         self.clear_arrows()
+
+    def clear_points_dynamic(self):
+        for point in self.points:
+            if isinstance(point, list):
+                point.clear()
+            else:
+                point.remove()  # Удаляем все точки с графика
+        self.points.clear()
 
