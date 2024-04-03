@@ -33,7 +33,7 @@ class Lab3Controller:
         self.start_calc()
 
     def delay_getter(self):
-        delay = self.window.lab1_delay.text()
+        delay = self.window.lab3_delay.text()
         if delay.replace(' ', '') != '' or float(delay) in range(0, 10):
             return float(delay)
         return 0.1
