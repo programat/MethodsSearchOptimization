@@ -1,12 +1,13 @@
 import traceback
 
 from models.swarm import PSO
-from models.functions import SphereFunction
+from models.functions import SphereFunction, RastriginFunction
+
 
 class Lab4Controller:
     def __init__(self, window):
         self.window = window
-        self.function = SphereFunction()
+        self.function = RastriginFunction()
         self.swarm_count = None
         self.iter_count = None
         self.c1_coef = None
@@ -67,7 +68,7 @@ class Lab4Controller:
                 allPoints.append(positions)
                 allBestPoints.append(best_positions)
 
-                self.window.updateText(f'Iteration {i}: Best fitness: {global_best_fitness:.5f}', delay=delay)
+                self.window.updateText(f'Iteration {i}: Best fitness: {global_best_fitness:.5f} Best positions args {global_best_position}', delay=delay)
 
             self.window.updateListPoint(allPoints, marker='.', delay=delay)
             self.window.updateListPoint(allBestPoints, marker='o', delay=delay)

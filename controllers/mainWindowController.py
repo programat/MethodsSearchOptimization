@@ -124,7 +124,7 @@ class MainWindowController:
             self.labController = self.window.lab3_controller
         elif current_tab == self.window.tab_lab4:
             self.window.functionSelector.setEnabled(False)
-            self.function_setter(models.functions.SphereFunction())
+            self.function_setter(models.functions.RastriginFunction())
             self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn,
                                     self.ticklabelsOn)
             print('switching to tab lab4')

@@ -1,3 +1,5 @@
+import math
+
 import numpy as np
 from abc import ABC, abstractmethod
 
@@ -21,6 +23,20 @@ class Functions(ABC):
     @abstractmethod
     def get_derivative(self, x, y):
         pass
+
+class RastriginFunction(Functions):
+    def get_function(self) -> tuple:
+        x = np.arange(self.x_interval[0], self.x_interval[1], 0.25)
+        y = np.arange(self.y_interval[0], self.y_interval[1], 0.25)
+        x, y = np.meshgrid(x, y)
+        z = 10*2 + np.array(x ** 2 - 10 * np.cos(2*math.pi*x)) + np.array(y ** 2 - 10 * np.cos(2*math.pi*y))
+        return x, y, z
+
+    def get_derivative(self, x, y):
+        return 0
+
+    def get_function_point(self, x, y):
+        return 10*2 + (x ** 2 - 10 * np.cos(2*math.pi*x)) + (y ** 2 - 10 * np.cos(2*math.pi*y))
 
 
 class MatiasFunction(Functions):
