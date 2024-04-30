@@ -18,6 +18,8 @@ from controllers.lab3Controller import Lab3Controller
 from view.lab3View import Lab3View
 from controllers.lab4Controller import Lab4Controller
 from view.lab4View import Lab4View
+from controllers.lab5Controller import Lab5Controller
+from view.lab5View import Lab5View
 
 
 class MainWindow(QMainWindow):
@@ -50,6 +52,8 @@ class MainWindow(QMainWindow):
         self.lab3_view = Lab3View(self, self.lab3_controller)
         self.lab4_controller = Lab4Controller(self)
         self.lab4_view = Lab4View(self, self.lab4_controller)
+        self.lab5_controller = Lab5Controller(self)
+        self.lab5_view = Lab5View(self, self.lab5_controller)
 
         self.controller.lab_selector()
         self.controller.functions_selector()
@@ -119,7 +123,7 @@ class PointThread(QThread):
         # self.points= []
         if isinstance(points, tuple):
             points = [points]
-        print(self.points)
+        # print(self.points)
         self.points.append((points, color, marker, delay))
 
     def run(self):
@@ -146,7 +150,7 @@ class PointListThread(QThread):
         for el in points:
             self.points.append((el, color, marker, delay))
         # self.points=[points, color, marker, delay]
-        print(self.points)
+        # print(self.points)
 
     def set_points(self, points, color, marker, delay):
         # self.points.clear()
@@ -166,4 +170,4 @@ if __name__ == '__main__':
     el = ([[-0.8708019971500014, -2.835048193475976, 1294.7122343670067],
            [2.5610452515341384, -2.1829865304294636, 7644.587153709607],
            [-0.6797552716973527, -2.1114463604657185, 665.1187974953248]], 'pink', '.', 0.1)
-    print(min(el[0], key=lambda x: x[2]))
+    # print(min(el[0], key=lambda x: x[2]))

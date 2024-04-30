@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QWidget
 
 
-class Lab3View(QWidget):
+class Lab5View(QWidget):
     def __init__(self, main_window, controller=None):
         super().__init__()
         self.main_window = main_window
@@ -9,7 +9,7 @@ class Lab3View(QWidget):
         self.setupUi()
 
     def setupUi(self):
-        self.main_window.startButton_3.clicked.connect(self.on_start_button_clicked)
+        self.main_window.startButton_5.clicked.connect(self.on_start_button_clicked)
 
     def set_controller(self, controller):
         self.controller = controller

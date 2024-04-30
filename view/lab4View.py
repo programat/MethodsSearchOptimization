@@ -9,7 +9,6 @@ class Lab4View(QWidget):
         self.setupUi()
 
     def setupUi(self):
-        print('setupUi()')
         self.main_window.startButton_4.clicked.connect(self.on_start_button_clicked)
 
     def set_controller(self, controller):

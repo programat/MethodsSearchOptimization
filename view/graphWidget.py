@@ -77,7 +77,7 @@ class GraphWidget(QtWidgets.QWidget):
         self.canvas.draw()
 
     def draw_point(self, points, color='pink', marker='o'):
-        print(points)
+        # print(points)
         for point in points:
             x, y, z = point
             self.points.append(self.axes.scatter(x, y, z, color=color, marker=marker, s=10, zorder=10))

@@ -94,6 +94,12 @@ class MainWindowController:
         elif selected_function == 'Функция верблюда':
             self.function = models.functions.CamelThreeHumpFunction(x_interval_str=self.x_interval_getter(),
                                                                     y_interval_str=self.y_interval_getter())
+        elif selected_function == 'Функция Розенброка':
+            self.function = models.functions.RosenbrockFunction(x_interval_str=self.x_interval_getter(),
+                                                               y_interval_str=self.y_interval_getter())
+        elif selected_function == 'Функция Растригина':
+            self.function = models.functions.RastriginFunction(x_interval_str=self.x_interval_getter(),
+                                                              y_interval_str=self.y_interval_getter())
         self.labController.set_function(self.function)
         self.window.updateGraph(self.function.get_function(), self.z_scale_getter(), self.gridOn, self.axisOn,
                                 self.ticklabelsOn)
@@ -129,3 +135,8 @@ class MainWindowController:
                                     self.ticklabelsOn)
             print('switching to tab lab4')
             self.labController = self.window.lab4_controller
+        elif current_tab == self.window.tab_lab5:
+            self.window.functionSelector.setEnabled(True)
+            self.labController = self.window.lab5_controller
+            self.functions_selector()
+            print('switching to tab lab5')

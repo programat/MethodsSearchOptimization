@@ -71,7 +71,7 @@ class Lab3Controller:
                 min_point = [round(i, 3) for i in min(points, key=lambda x: x[2])]
                 self.window.updateText(f'{i}: Best point: {min_point[0], min_point[1]}, f: {min_point[2]}', delay=delay)
 
-            print(allPoints)
+            # print(allPoints)
             self.window.updateListPoint(allPoints, marker='.', delay=delay)
 
 

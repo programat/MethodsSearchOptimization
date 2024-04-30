@@ -217,6 +217,40 @@
      <attribute name="title">
       <string>lab2</string>
      </attribute>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>431</width>
+        <height>191</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Academy Engraved LET</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>equation.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
      <widget class="QPushButton" name="startButton_2">
       <property name="enabled">
        <bool>true</bool>
@@ -291,40 +325,6 @@
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_7">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>10</y>
-        <width>431</width>
-        <height>191</height>
-       </rect>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>10</width>
-        <height>10</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <family>Academy Engraved LET</family>
-        <pointsize>24</pointsize>
-       </font>
-      </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>equation.png</pixmap>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -503,7 +503,7 @@
         <x>0</x>
         <y>0</y>
         <width>461</width>
-        <height>303</height>
+        <height>261</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
@@ -646,7 +646,7 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>170</x>
         <y>270</y>
         <width>121</width>
         <height>51</height>
@@ -675,274 +675,40 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_lab5">
+    <widget class="QWidget" name="tab_5">
      <attribute name="title">
       <string>lab5</string>
      </attribute>
-     <widget class="QScrollArea" name="scrollArea">
+     <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>461</width>
-        <height>321</height>
+        <x>170</x>
+        <y>110</y>
+        <width>131</width>
+        <height>71</height>
        </rect>
       </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+      <property name="minimumSize">
+       <size>
+        <width>10</width>
+        <height>10</height>
+       </size>
       </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
+      <property name="font">
+       <font>
+        <family>Academy Engraved LET</family>
+        <pointsize>24</pointsize>
+       </font>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>459</width>
-         <height>474</height>
-        </rect>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QFrame" name="lab5Frame">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>450</height>
-           </size>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-          <widget class="QWidget" name="gridLayoutWidget_5">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>421</width>
-             <height>405</height>
-            </rect>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_5">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetNoConstraint</enum>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>12</number>
-            </property>
-            <property name="verticalSpacing">
-             <number>21</number>
-            </property>
-            <item row="5" column="1">
-             <widget class="QLineEdit" name="elite_count">
-              <property name="text">
-               <string>1</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="beeInPersLabel">
-              <property name="text">
-               <string>Пчел в 
-перспективном участке</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="0">
-             <widget class="QLabel" name="delayLabel">
-              <property name="text">
-               <string>Задержка</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="scout_count">
-              <property name="text">
-               <string>20</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="eliteCountLabel">
-              <property name="text">
-               <string>Лучший
-участков</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="sizeLabel">
-              <property name="text">
-               <string>Размер
-участков</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLineEdit" name="pers_count">
-              <property name="text">
-               <string>3</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="persCountLabel">
-              <property name="text">
-               <string>Перспективных
-участков</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="1">
-             <widget class="QLineEdit" name="dist_size">
-              <property name="text">
-               <string>0.5</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="scoutLabel">
-              <property name="text">
-               <string>Разведчики</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="iter_count_lab5">
-              <property name="text">
-               <string>50</string>
-              </property>
-             </widget>
-            </item>
-            <item row="11" column="1">
-             <widget class="QLineEdit" name="lab5_delay">
-              <property name="text">
-               <string>0.2</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="bee_in_pers_count">
-              <property name="text">
-               <string>10</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="beeInBestLabel">
-              <property name="text">
-               <string>Пчел в 
-лучшем участке</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item row="10" column="0" colspan="2">
-             <widget class="Line" name="line_6">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="bee_in_best_count">
-              <property name="text">
-               <string>20</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QLabel" name="iterLabel">
-              <property name="text">
-               <string>Число итераций</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QPushButton" name="startButton_5">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <property name="geometry">
-            <rect>
-             <x>150</x>
-             <y>400</y>
-             <width>121</width>
-             <height>51</height>
-            </rect>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>15</horstretch>
-             <verstretch>21</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>16</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="sizeIncrement">
-            <size>
-             <width>7</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Запуск</string>
-           </property>
-          </widget>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="text">
+       <string>👷🏻👷🏻👷🏻</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_6">
@@ -1174,16 +940,6 @@
        <item>
         <property name="text">
          <string>Функция Матьяса</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Функция Розенброка</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Функция Растригина</string>
         </property>
        </item>
        <item>
