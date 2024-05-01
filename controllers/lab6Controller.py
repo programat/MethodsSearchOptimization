@@ -1,6 +1,6 @@
 import traceback
 
-from models.immune import Immunity
+from models.immune import Immune
 
 
 class Lab6Controller:
@@ -70,21 +70,22 @@ class Lab6Controller:
             delay = float(self.delay_getter())
 
             self.window.textOutput.clear()
-            immune = Immunity(func=self.function.get_function_point, agents=self.antibody_count_lab6, clons=self.clone_count,
-                              best=self.best_antbd_count, best_clon_numb=self.rand_antbd_count, position_x=5, position_y=5, mutation_rate=self.mut_coef_lab6)
+            immune = Immune(func=self.function.get_function_point, pop_size=self.antibody_count_lab6, num_clones=self.clone_count,
+                              num_best=self.best_antbd_count, num_best_clones=self.rand_antbd_count, bounds=(5,5), mutation_rate=self.mut_coef_lab6)
 
             all_points = []
 
-            for i, (immune_data, best_agent) in enumerate(immune.run(self.iter_count)):
+            for i, (antibodies, best_antibody) in enumerate(immune.run(self.iter_count)):
+                print(antibodies)
                 points = []
-                for ameba in immune_data:
-                    x, y, z = ameba
-                    points.append([x, y, z])
+                for ameba in antibodies:
+                    x, y = ameba
+                    points.append([x, y, self.function.get_function_point(x,y)])
 
                 all_points.append(points)
 
-                best_x, best_y, best_fitness = best_agent
-                self.window.updateText(f"Iteration {i}: Best solution: ({best_x: .5f}, {best_y: .5f}, {best_fitness: .5f})", delay=delay)
+                best_x, best_y = best_antibody
+                self.window.updateText(f"Iteration {i}: Best solution: ({best_x: .5f}, {best_y: .5f}, {self.function.get_function_point(best_x,best_y): .5f})", delay=delay)
 
             # print(allPoints)
             self.window.updateListPoint(all_points, marker='.', delay=delay)

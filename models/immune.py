@@ -1,95 +1,61 @@
-import random
-from operator import itemgetter
-from functions import *  # Assuming you have a file 'functions.py' with your objective functions
+import numpy as np
 
 
-class Immunity:
-    """
-    Класс для реализации иммунного алгоритма с клональной селекцией.
-
-    Args:
-        func (callable): Целевая функция для оптимизации.
-        agents (int): Количество агентов (потенциальных решений) в популяции.
-        clons (int): Количество клонов, создаваемых для каждого выбранного агента.
-        best (int): Количество лучших агентов, выбираемых для клонирования.
-        best_clon_numb (int): Количество лучших клонов, выбираемых для добавления в популяцию.
-        position_x (float): Максимальное значение координаты x для инициализации агентов.
-        position_y (float): Максимальное значение координаты y для инициализации агентов.
-        mutation_rate (float): Вероятность мутации клона (по умолчанию 0.2).
-    """
-
-    def __init__(self, func, agents, clons, best, best_clon_numb, position_x, position_y, mutation_rate=0.2):
+class Immune:
+    def __init__(self, func, pop_size, num_best, num_clones, num_best_clones, mutation_rate, bounds):
         self.func = func
-        self.pos_x = float(position_x)
-        self.pos_y = float(position_y)
-        self.agents_numb = agents
-        self.agents = self.initialize_population()  # Инициализируем популяцию агентов
-        self.best = best
-        self.best_clon_numb = best_clon_numb
-        self.clon_numb = clons
+        self.pop_size = pop_size
+        self.num_best = num_best
+        self.num_clones = num_clones
+        self.num_best_clones = num_best_clones
         self.mutation_rate = mutation_rate
+        self.bounds = bounds
 
-    def initialize_population(self):
-        """
-        Создает начальную популяцию агентов со случайными позициями.
-        """
-        return [[random.uniform(-self.pos_x, self.pos_x),
-                 random.uniform(-self.pos_y, self.pos_y),
-                 self.func(random.uniform(-self.pos_x, self.pos_x), random.uniform(-self.pos_y, self.pos_y))]
-                for _ in range(self.agents_numb)]
+        # Инициализация популяции антител
+        self.antibodies = np.random.uniform(bounds[0], bounds[1], size=(pop_size, 2))
 
-    def immune_step(self, coef):
-        """
-        Выполняет один шаг иммунного алгоритма: селекция, клонирование, мутация, оценка и замена.
+    def affinity(self, antibody):
+        x, y = antibody
+        return -self.func(x, y)
 
-        Args:
-            coef (float): Коэффициент, влияющий на степень мутации (обычно уменьшается с каждой итерацией).
-        """
-        # Selection (Best Individuals) - Выбираем лучших агентов для клонирования
-        best_pop = sorted(self.agents, key=itemgetter(2), reverse=False)[:self.best]
+    def mutate(self, antibody):
+        return antibody + self.mutation_rate * np.random.uniform(-0.5, 0.5, size=antibody.shape)
 
-        # Cloning - Клонируем выбранных агентов
-        new_pop = []
-        for pop in best_pop:
-            clones = [pop.copy() for _ in range(self.clon_numb)]
-            new_pop.extend(clones)
+    def run(self, num_iterations):
+        for iteration in range(num_iterations):
+            # Вычисление аффинности антител
+            affinities = np.array([self.affinity(antibody) for antibody in self.antibodies])
 
-        # Mutation with adaptive rate - Мутируем клоны с адаптивной вероятностью
-        for npop in new_pop:
-            if random.random() < self.mutation_rate:
-                # Mutation based on fitness - Степень мутации зависит от приспособленности
-                npop[0] = npop[0] + coef * random.uniform(-0.5, 0.5) * (1 - npop[2] / self.agents[-1][2])
-                npop[1] = npop[1] + coef * random.uniform(-0.5, 0.5) * (1 - npop[2] / self.agents[-1][2])
-            npop[2] = self.func(npop[0], npop[1])  # Пересчитываем приспособленность после мутации
+            # Выбор лучших антител
+            best_indices = np.argsort(affinities)[-self.num_best:]
+            best_antibodies = self.antibodies[best_indices]
 
-        # Evaluation and Selection (Best Clones) - Выбираем лучших клонов
-        new_pop = sorted(new_pop, key=itemgetter(2), reverse=False)[:self.best_clon_numb]
+            # Клонирование и мутация лучших антител
+            clones = np.repeat(best_antibodies, self.num_clones, axis=0)
+            mutated_clones = np.array([self.mutate(clone) for clone in clones])
 
-        # Replacement - Заменяем худших агентов лучшими клонами
-        self.agents += new_pop
-        self.agents = sorted(self.agents, key=itemgetter(2), reverse=False)[:self.agents_numb]
+            # Вычисление аффинности клонов
+            clone_affinities = np.array([self.affinity(clone) for clone in mutated_clones])
 
-    def get_best(self):
-        """
-        Возвращает агента с наилучшей приспособленностью (наименьшим значением целевой функции).
-        """
-        return self.agents[0]
+            # Выбор лучших клонов
+            best_clone_indices = np.argsort(clone_affinities)[-self.num_best_clones:]
+            best_clones = mutated_clones[best_clone_indices]
 
-    def run(self, max_iter):
-        """
-        Запускает иммунный алгоритм на заданное количество итераций и
-        возвращает генератор для визуализации результатов.
+            # Объединение популяции антител с лучшими клонами
+            self.antibodies = np.vstack((self.antibodies, best_clones))
 
-        Args:
-            max_iter (int): Количество итераций алгоритма.
+            # Сжатие популяции антител
+            affinities = np.array([self.affinity(antibody) for antibody in self.antibodies])
+            best_indices = np.argsort(affinities)[-self.pop_size:]
+            self.antibodies = self.antibodies[best_indices]
 
-        Yields:
-            tuple: Кортеж, содержащий:
-                *   list: Список всех агентов с их позициями и приспособленностью.
-                *   list: Лучший агент на текущей итерации.
-        """
-        for i in range(max_iter):
-            self.immune_step(1 / (i + 1))
-            best_agent = self.get_best()
-            all_points = [[agent[0], agent[1], agent[2]] for agent in self.agents]
-            yield all_points, best_agent
+            # Обновление массива affinities после сжатия популяции
+            affinities = affinities[best_indices]
+
+            # Вывод информации на текущей итерации
+            best_antibody = self.antibodies[np.argmax(affinities)]
+            yield self.antibodies, best_antibody
+
+        # Возвращение лучшего решения
+        # best_antibody = self.antibodies[np.argmax(affinities)]
+        # return best_antibody
