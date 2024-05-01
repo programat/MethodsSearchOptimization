@@ -20,6 +20,8 @@ from controllers.lab4Controller import Lab4Controller
 from view.lab4View import Lab4View
 from controllers.lab5Controller import Lab5Controller
 from view.lab5View import Lab5View
+from controllers.lab6Controller import Lab6Controller
+from view.lab6View import Lab6View
 
 
 class MainWindow(QMainWindow):
@@ -54,6 +56,8 @@ class MainWindow(QMainWindow):
         self.lab4_view = Lab4View(self, self.lab4_controller)
         self.lab5_controller = Lab5Controller(self)
         self.lab5_view = Lab5View(self, self.lab5_controller)
+        self.lab6_controller = Lab6Controller(self)
+        self.lab6_view = Lab6View(self, self.lab6_controller)
 
         self.controller.lab_selector()
         self.controller.functions_selector()

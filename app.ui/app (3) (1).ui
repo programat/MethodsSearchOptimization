@@ -46,7 +46,7 @@
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="tab_lab1">
      <attribute name="title">
@@ -503,7 +503,7 @@
         <x>0</x>
         <y>0</y>
         <width>461</width>
-        <height>271</height>
+        <height>261</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
@@ -702,8 +702,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>459</width>
-         <height>474</height>
+         <width>442</width>
+         <height>468</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -945,7 +945,7 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_lab6">
+    <widget class="QWidget" name="tab_6">
      <attribute name="title">
       <string>lab6</string>
      </attribute>
@@ -955,7 +955,7 @@
         <x>0</x>
         <y>0</y>
         <width>461</width>
-        <height>261</height>
+        <height>337</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_6">
@@ -971,13 +971,10 @@
        <property name="verticalSpacing">
         <number>21</number>
        </property>
-       <item row="2" column="0">
-        <widget class="QLabel" name="betsAntBdLabel">
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="rand_antbd_count">
          <property name="text">
-          <string>Кол-во лучших отбираемых</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <string>0.9</string>
          </property>
         </widget>
        </item>
@@ -1001,20 +998,6 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="1">
-        <widget class="QLineEdit" name="lab6_delay">
-         <property name="text">
-          <string>0.2</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="rand_antbd_count">
-         <property name="text">
-          <string>10</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="iterCountLabel">
          <property name="text">
@@ -1022,23 +1005,6 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="label_32">
-         <property name="text">
-          <string>Задержка</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QLineEdit" name="clone_count">
-         <property name="text">
-          <string>2</string>
          </property>
         </widget>
        </item>
@@ -1052,27 +1018,6 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="0" colspan="2">
-        <widget class="Line" name="line_7">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="best_antbd_count">
-         <property name="text">
-          <string>10</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="iter_count_lab6">
-         <property name="text">
-          <string>50</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="1">
         <widget class="QLineEdit" name="antibody_count_lab6">
          <property name="text">
@@ -1080,10 +1025,58 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
-        <widget class="QLineEdit" name="mut_coef_lab6">
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="iter_count_lab6">
          <property name="text">
-          <string>0.2</string>
+          <string>10</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="clone_count">
+         <property name="text">
+          <string>0.7</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="Line" name="line_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLineEdit" name="lab6_delay">
+         <property name="text">
+          <string>0.1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="betsAntBdLabel">
+         <property name="text">
+          <string>Кол-во лучших отбираемых</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_32">
+         <property name="text">
+          <string>Задержка</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="best_antbd_count">
+         <property name="text">
+          <string>0.8</string>
          </property>
         </widget>
        </item>
@@ -1097,9 +1090,16 @@
          </property>
         </widget>
        </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="mutCoef">
+         <property name="text">
+          <string>0.7</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="startButton_6">
+     <widget class="QPushButton" name="startLab6">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -1511,7 +1511,7 @@
      <x>0</x>
      <y>0</y>
      <width>1268</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
