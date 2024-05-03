@@ -26,10 +26,10 @@ class Immune:
             # Вычисление аффинности антител
             affinities = np.array([self.affinity(antibody) for antibody in self.antibodies])
 
+            # Клональная селекция и соматическая гипермутация:
             # Выбор лучших антител
             best_indices = np.argsort(affinities)[-self.num_best:]
             best_antibodies = self.antibodies[best_indices]
-
             # Клонирование и мутация лучших антител
             clones = np.repeat(best_antibodies, self.num_clones, axis=0)
             mutated_clones = np.array([self.mutate(clone) for clone in clones])
