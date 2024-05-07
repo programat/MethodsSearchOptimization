@@ -9,10 +9,8 @@ class Lab7Controller:
         self.function = None
         self.iter_count = None
         self.num_bacteria = None
-        self.step_size = None
         self.num_chemotactic = None
         self.num_elimination = None
-        self.prob_elimination = None
 
     def iter_count_getter(self):
         self.iter_count = self.window.iter_count_lab7.text()
@@ -22,10 +20,6 @@ class Lab7Controller:
         self.num_bacteria = self.window.bacteria_count_lab7.text()
         return self.num_bacteria
 
-    def step_size_getter(self):
-        self.step_size = self.window.liq_count_lab7.text()
-        return self.step_size
-
     def num_chemotactic_getter(self):
         self.num_chemotactic = self.window.swim_step_count_lab7.text()
         return self.num_chemotactic
@@ -33,10 +27,6 @@ class Lab7Controller:
     def num_elimination_getter(self):
         self.num_elimination = self.window.liquidation_step_lab7.text()
         return self.num_elimination
-
-    def prob_elimination_getter(self):
-        self.prob_elimination = self.window.liquidation_step_lab7_2.text()
-        return self.prob_elimination
 
     def onStartButtonClicked(self):
         self.start_calc()
@@ -53,23 +43,19 @@ class Lab7Controller:
     def start_calc(self):
         self.iter_count_getter()
         self.num_bacteria_getter()
-        self.step_size_getter()
         self.num_chemotactic_getter()
         self.num_elimination_getter()
-        self.prob_elimination_getter()
         self.delay_getter()
         try:
             self.iter_count = int(self.iter_count)
             self.num_bacteria = int(self.num_bacteria)
-            self.step_size = int(self.step_size)
             self.num_chemotactic = int(self.num_chemotactic)
             self.num_elimination = int(self.num_elimination)
-            self.prob_elimination = float(self.prob_elimination)
 
             delay = float(self.delay_getter())
 
             self.window.textOutput.clear()
-            bacterial = Bacterial(func=self.function.get_function_point, num_bacteria=self.num_bacteria, num_chemotactic=self.num_chemotactic, num_elimination=self.num_elimination)
+            bacterial = Bacterial(func=self.function.get_function_point, num_bacteria=self.num_bacteria, num_chemotactic=self.num_chemotactic, step_elimination=self.num_elimination/100)
 
             all_points = []
 
@@ -77,14 +63,14 @@ class Lab7Controller:
                 print(bacterias, end='\n---\n')
                 points = []
                 for ameba in bacterias:
-
-                    points.append(ameba)
+                    x, y, f, _ = ameba
+                    points.append([x, y, f])
 
                 all_points.append(points)
 
-                best_x, best_y, best_func = best_position
+                best_x, best_y, best_func, health = best_position
                 self.window.updateText(
-                    f"Iteration {i}: Best solution: ({best_x: .5f}, {best_y: .5f}, {best_func: .5f})",
+                    f"Iteration {i}: Best solution: ({best_x: .5f}, {best_y: .5f}, {best_func: .5f}, health: {health:.5f})",
                     delay=delay)
 
             # print(allPoints)
