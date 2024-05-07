@@ -321,7 +321,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>../app.ui/equation.png</pixmap>
+       <pixmap>equation.png</pixmap>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1134,162 +1134,43 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_lab7">
+    <widget class="QWidget" name="tab_7">
      <attribute name="title">
       <string>lab7</string>
      </attribute>
-     <widget class="QWidget" name="gridLayoutWidget_7">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>461</width>
-        <height>271</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_7">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetNoConstraint</enum>
-       </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>12</number>
-       </property>
-       <property name="verticalSpacing">
-        <number>21</number>
-       </property>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_33">
-         <property name="text">
-          <string>Задержка</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="liquidation_step_lab7">
-         <property name="text">
-          <string>10</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="swimLabel_lab7">
-         <property name="text">
-          <string>Шагов схемотаксиса</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QLineEdit" name="delay_lab7">
-         <property name="text">
-          <string>0.2</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="bacteriaLabel_lab7">
-         <property name="text">
-          <string>Число бактерий</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="liquidLabel_lab7">
-         <property name="text">
-          <string>Шаг ликвидации</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="iter_count_lab7">
-         <property name="text">
-          <string>50</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="swim_step_count_lab7">
-         <property name="text">
-          <string>10</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="iterCountLabel_lab7">
-         <property name="text">
-          <string>Число итераций</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0" colspan="2">
-        <widget class="Line" name="line_8">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="bacteria_count_lab7">
-         <property name="text">
-          <string>50</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QPushButton" name="start_button_lab7">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
+     <widget class="QLabel" name="label_16">
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>270</y>
-        <width>121</width>
-        <height>51</height>
+        <y>110</y>
+        <width>131</width>
+        <height>71</height>
        </rect>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>15</horstretch>
-        <verstretch>21</verstretch>
-       </sizepolicy>
       </property>
       <property name="minimumSize">
        <size>
-        <width>16</width>
-        <height>0</height>
+        <width>10</width>
+        <height>10</height>
        </size>
       </property>
-      <property name="sizeIncrement">
-       <size>
-        <width>7</width>
-        <height>0</height>
-       </size>
+      <property name="font">
+       <font>
+        <family>Academy Engraved LET</family>
+        <pointsize>24</pointsize>
+       </font>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
       </property>
       <property name="text">
-       <string>Запуск</string>
+       <string>👷🏻👷🏻👷🏻</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_lab8">
+    <widget class="QWidget" name="tab_8">
      <attribute name="title">
       <string>lab8</string>
      </attribute>
@@ -1378,7 +1259,7 @@
     <property name="geometry">
      <rect>
       <x>520</x>
-      <y>30</y>
+      <y>20</y>
       <width>721</width>
       <height>841</height>
      </rect>
