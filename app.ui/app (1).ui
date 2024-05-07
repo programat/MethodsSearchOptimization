@@ -321,7 +321,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>../app.ui/equation.png</pixmap>
+       <pixmap>equation.png</pixmap>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

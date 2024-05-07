@@ -145,3 +145,8 @@ class MainWindowController:
             self.labController = self.window.lab6_controller
             self.functions_selector()
             print('switching to tab lab6')
+        elif current_tab == self.window.tab_lab7:
+            self.window.functionSelector.setEnabled(True)
+            self.labController = self.window.lab7_controller
+            self.functions_selector()
+            print('switching to tab lab7')
